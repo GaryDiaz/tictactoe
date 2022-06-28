@@ -1,5 +1,19 @@
+@font-face {
+  font-family: "Alegreya";
+  src: url("./font/Alegreya-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Black Ravens";
+  src: url("./font/Black\ Ravens.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 body {
-  font: 14px "Century Gothic", Furura, sans-serif;
+  font: 14px "Alegreya", Furura, sans-serif;
   margin: 20px;
 }
 
@@ -22,8 +36,8 @@ status {
   background: #fff;
   border: 1px solid #999;
   float: left;
+  font: 14px "Black Ravens", Furura, sans-serif;
   font-size: 24px;
-  font-weight: bold;
   line-height: 34px;
   height: 34px;
   margin-right: -1px;
