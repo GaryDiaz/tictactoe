@@ -39,8 +39,21 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      pasoNumero: 0,
+      xTurno: true,
+    };
+  }
+
   handleClick(i) {
-    const history = this.state.history;
+    const history = this.state.history.slice(0, this.state.pasoNumero + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calcularGanador(squares) || squares[i]) {
@@ -53,24 +66,21 @@ class Game extends React.Component {
           squares: squares,
         },
       ]),
+      pasoNumero: history.length,
       xTurno: !this.state.xTurno,
     });
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null),
-        },
-      ],
-      xTurno: true,
-    };
+  irA(paso) {
+    this.setState({
+      pasoNumero: paso,
+      xTurno: paso % 2 === 0,
+    });
   }
+
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.pasoNumero];
     const ganador = calcularGanador(current.squares);
 
     const movimientos = history.map((paso, movimiento) => {
@@ -78,7 +88,7 @@ class Game extends React.Component {
         ? "Ir al movimiento #" + movimiento
         : "Ir al inicio del juego";
       return (
-        <li>
+        <li key={movimiento}>
           <button onClick={() => this.irA(movimiento)}>{desc}</button>
         </li>
       );
