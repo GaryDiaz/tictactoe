@@ -47,6 +47,11 @@ status {
   width: 34px;
 }
 
+.ganador {
+  color: red;
+  background-color: #999;
+}
+
 .square:focus {
   outline: none;
 }
