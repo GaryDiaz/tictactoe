@@ -15,13 +15,14 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
+      xTurno: true,
     };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = "X";
-    this.setState({ squares: squares });
+    squares[i] = this.state.xTurno ? "X" : "O";
+    this.setState({ squares: squares, xTurno: !this.state.xTurno });
   }
 
   renderSquare(i) {
@@ -29,7 +30,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = "Siguiente Jugador: X";
+    const status = "Siguiente Jugador: " + (this.state.xTurno ? "X" : "O");
     return (
       <div>
         <div className="status">{status}</div>
